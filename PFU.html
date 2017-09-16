@@ -1,0 +1,292 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Проект опис</title>
+		<base target="_top">
+		<meta charset="utf-8" />
+		<?!= include('main.stylesheet'); ?>
+        <?!= include('main.js'); ?>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<?!= include('jquery.formstyler.js'); ?>
+		<script>
+		(function($) {
+			$(function() {
+				$('input, select').styler({
+					selectSearch: true
+				});
+			});
+		})(jQuery);
+		</script>
+	</head>
+	<body>
+<!--=============================================== Меню ===============================================-->
+     <div class="menu">
+	   <div class="main-menu active">
+			 <a>УПФУ</a>
+		 </div>
+		 <div class="main-menu">
+			 <a>УПСЗН</a>
+		 </div>
+		 <div class="nav">
+			 <ul>
+				 <li class="nav-li">
+					 <select id="select_pfu">
+						 <option value="0">-- Вибрати фонд --</option>
+					 </select>
+				 </li>
+				 <li class="nav-li">
+					 <select id="select_period">
+						 <option value="0">-- Вибрати період --</option>
+					 </select>
+				 </li>
+				 <li class="nav-li">
+					 <select id="select_tip">
+						 <option value="0">-- Вибрати тип --</option>
+					 </select>
+				 </li>
+				 <li class="nav-li">
+					 <div class="button" onclick="ShowResultsPF()">Cформувати опис</div>
+				 </li>
+			 </ul>
+		 </div>
+	 </div>
+	 <script>
+	 $(".main-menu:nth-child(1) a").attr("href", publishWebApplicationLink+"?fond=PFU");
+     $(".main-menu:nth-child(2) a").attr("href", publishWebApplicationLink+"?fond=UPSZN");
+     for (var i = 0;i < pfu.length;i++) {
+		 $("#select_pfu").append( $('<option value="'+pfu[i].name+'">'+pfu[i].name+'</option>'));
+     };
+     addOptionsToSelect("#select_period",perid.valuePfu,perid.name);
+     addOptionsToSelect("#select_tip",tip.pfu,tip.pfu);
+	 </script>
+<!--============================================== Список ==============================================-->
+	 <div class="opis">
+		 <table id="spisok">
+			 <caption>
+				 <h3>СПИСОК<br>на зарахування пенсій та грошової допомоги на поточні рахунки</h3>
+				 <p>в <span class="bankName">____________________________________________________________________________________</span></p>
+				 <p>(назва установи уповноваженого банку)</p>
+				 <p>за період з <span class="period">__________________________________ по _______________________________________</span></p>
+				 <p><span class="fondName">______________________________________________________________________________________</span></p>
+				 <p>(найменування органу Пенсійного фонду або органу праці та соціального захисту населення)</p>
+				 <p><span class="finances">______________________________________________________________________________________</span></p>
+				 <p>(назва органу, що здійснює фінансування)</p>
+			 </caption>
+			 <tbody>
+				 <tr>
+					 <th>Дата виплати</th>
+					 <th>Порядковий номер</th>
+					 <th>Номер поточного рахунка</th>
+					 <th>Прізвище, ім'я, по батькові</th>
+					 <th>Сума, гривень</th>
+					 <th>Номер особового рахунка</th>
+					 <th>Ідентифікаційний номер</th>
+					 <th>Причина незарахування</th>
+				 </tr>
+				 <tr>
+					 <td>ХХ.ХХ.ХХ</td>
+					 <td></td>
+					 <td></td>
+					 <td></td>
+					 <td></td>
+					 <td></td>
+					 <td></td>
+					 <td></td>
+				 </tr>
+			 </tbody>
+			 <tfoot>
+				 <tr>
+					 <td colspan="8">Разом (за кожною датою виплати)</td>
+				 </tr>
+			 </tfoot>
+		 </table>
+		 <table>
+			 <tbody>
+				 <tr>
+					 <td colspan="3">Усього за списком <span class="AllRecipients">__________</span> одержувачів.<br>
+						 На загальну суму <span class="AllSumInWorlds">______________________________________________________________ гривень.</span><br>
+						 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(цифрами та словами)
+					 </td>
+				 </tr>
+				 <tr>
+					 <td>Керівник органу<br> Пенсійного фонду<br> або органу праці та<br> соціального захисту<br>населення</td>
+					 <td>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>____________<br>(підпис)</td>
+					 <td>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>_______________________<br>(ініціали та прізвище)</td>
+				 </tr>
+				 <tr>
+					 <td>Головний бухгалтер</td>
+					 <td>____________</td>
+					 <td>_______________________</td>
+				 </tr>
+				 <tr>
+					 <td>М. П.</td>
+					 <td></td>
+					 <td></td>
+				 </tr>
+				 <tr>
+					 <td colspan="3">Перевірено <span class="AllRecipients">_________________________</span> поточних рахунків на суму <span class="AllSum">__________________</span> гривень.<br>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(кількість)</td>
+				 </tr>
+				 <tr>
+					 <td>Керуючий банком</td>
+					 <td>____________<br>(підпис)</td>
+					 <td>_______________________<br>(ініціали та прізвище)</td>
+				 </tr>
+				 <tr>
+					 <td>Головний бухгалтер</td>
+					 <td>____________</td>
+					 <td>_______________________</td>
+				 </tr>
+				 <tr>
+					 <td colspan="3">Зараховано на вклади <span class="CountCreditedRecipients">_______________________________________________________</span> одержувачів<br>
+						 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(кількість)<br>
+						 на загальну суму <span class="CreditedSumInWorlds">______________________________________________________________ гривень.</span><br>
+						 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(цифрами та словами)<br>
+						 Не зараховано на вклади <span class="CountNoCreditedRecipients">____________________________________________________</span> одержувачів<br>
+						 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(кількість)<br>
+						 на загальну суму <span class="NoCreditedSumInWorlds">______________________________________________________________ гривень.</span><br>
+						 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(цифрами та словами)
+					 </td>
+				 </tr>
+				 <tr>
+					 <td>Керуючий банком</td>
+					 <td>____________<br>(підпис)</td>
+					 <td>_______________________<br>(ініціали та прізвище)</td>
+				 </tr>
+				 <tr>
+					 <td>Головний бухгалтер</td>
+					 <td>____________</td>
+					 <td>_______________________</td>
+				 </tr>
+				 <tr>
+					 <td class="stamp">М. П.</td>
+					 <td></td>
+					 <td></td>
+				 </tr>
+			 </tbody>
+		 </table>
+<!--============================================== Опись ==============================================-->
+		 <table>
+			 <caption>
+				 <h3>ОПИС<br>списків на зарахування пенсій та допомоги на поточні рахунки, переданих</h3>
+				 <p>до <span class="bankName">____________________________________________________________________________________</span></p>
+				 <p>(назва центральної установи уповноваженого банку)</p>
+				 <p>за період з <span class="period">__________________________________ по _______________________________________</span></p>
+				 <p><span class="fondName">______________________________________________________________________________________</span></p>
+				 <p>(найменування органу Пенсійного фонду або органу праці та соціального захисту населення)</p>
+				 <p>За рахунок коштів <span class="finances">______________________________________________________________________</span></p>
+				 <p>(назва органу, що здійснює фінансування)</p>
+			 </caption>
+			 <thead>
+				 <tr>
+					 <th>Дата виплати</th>
+					 <th>Номер установи (філії) банку</th>
+					 <th>Номер списку</th>
+					 <th>Кількість одержувачів</th>
+					 <th>Сума, гривень</th>
+				 </tr>
+			 </thead>
+			 <tbody>
+				 <tr>
+					 <td>ХХ.ХХ.ХХ</td>
+					 <td></td>
+					 <td></td>
+					 <td></td>
+					 <td></td></tr>
+					 <tr>
+						 <td colspan="5">Разом (за кожною датою виплати)</td>
+					 </tr>
+				 </tbody>
+			 </table>
+			 <table>
+				 <tbody>
+					 <tr>
+						 <td colspan="3">Усього <span class="AllRecipients">__________</span> одержувачів.<br>
+							 На загальну суму <span class="AllSumInWorlds">______________________________________________________________гривень.</span> <br>
+							 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(цифрами та словами)
+						 </td>
+					 </tr>
+					 <tr>
+						 <td>Керівник органу<br> Пенсійного фонду<br> або органу праці та<br> соціального захисту<br>населення</td>
+						 <td>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>____________<br>(підпис)</td>
+						 <td>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>_______________________<br>(ініціали та прізвище)</td>
+					 </tr>
+					 <tr>
+						 <td>Головний бухгалтер</td>
+						 <td>____________</td>
+						 <td>_______________________</td>
+					 </tr>
+					 <tr>
+						 <td>М. П.</td>
+						 <td></td>
+						 <td></td>
+					 </tr>
+					 <tr>
+						 <td colspan="3">Перевірено списків <span class="amountList">_______________________________</span> на суму <span class="AllSum">_____________________</span> гривень.<br>
+							 &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(кількість)
+						 </td>
+					 </tr>
+					 <tr>
+						 <td>Керуючий банком</td>
+						 <td>____________<br>(підпис)</td>
+						 <td>_______________________<br>(ініціали та прізвище)</td>
+					 </tr>
+					 <tr>
+						 <td>Головний бухгалтер</td>
+						 <td>____________</td>
+						 <td>_______________________</td>
+					 </tr>
+					 <tr>
+						 <td class="stamp">М. П.</td>
+						 <td></td>
+						 <td></td>
+					 </tr>
+					 <tr>
+						 <td colspan="3">Зараховано на вклади <span class="CountCreditedRecipients">___________________</span> одержувачів на загальну суму <span class="CreditedSum">_____________ </span> гривень.<br>
+							 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(кількість)<br>
+							 Не зараховано на вклади <span class="CountNoCreditedRecipients">________________</span> одержувачів на загальну суму <span class="NoCreditedSum">_____________</span> гривень.<br>
+							 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(кількість)<br>
+						 </td>
+					 </tr>
+					 <tr>
+						 <td colspan="3">
+							 Повернуто за платіжними дорученнями:<br>
+							 <span class="refunds">
+								 N ______ від _____ _______________ 20__ р.<br>
+								 N ______ від _____ _______________ 20__ р.<br>
+							 </span>
+						 </td>
+					 </tr>
+					 <tr>
+						 <td colspan="3">
+							 <span class="fondName">_____________________________________________________________________________________</span><br>
+							 (назва органу Пенсійного фонду або органу праці та соціального захисту населення)<br>
+						 </td>
+					 </tr>
+					 <tr>
+						 <td colspan="3">
+							 на загальну суму <span class="RefundSumInWorlds">______________________________________________________________ гривень.</span><br>
+							 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+							 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+							 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (цифрами та словами)
+						 </td>
+					 </tr>
+					 <tr>
+						 <td>Керуючий банком</td>
+						 <td>____________<br>(підпис)</td>
+						 <td>_______________________<br>(ініціали та прізвище)</td>
+					 </tr>
+					 <tr>
+						 <td>Головний бухгалтер</td>
+						 <td>____________</td>
+						 <td>_______________________</td>
+					 </tr>
+					 <tr>
+						 <td class="stamp">М. П.</td>
+						 <td></td>
+						 <td></td>
+					 </tr>
+				 </tbody>
+			 </table>
+		 </div>
+	 </body>
+</html>
