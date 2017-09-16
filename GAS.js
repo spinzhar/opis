@@ -1,6 +1,5 @@
 //настройки
 var dataSpreadsheetsID = "SpreadsheetsID";
-//var dataSpreadsheetsID = "SpreadsheetsID";
 var rangeDataPfNames = "A3:A41";
 
 //выборка массива обьектов возвратов по пенсии
